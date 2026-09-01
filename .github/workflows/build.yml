@@ -1,0 +1,47 @@
+name: Build ZhihuHub Desktop
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Publish self-contained executable
+      run: |
+        dotnet publish ZhihuHub.UI/ZhihuHub.UI.csproj `
+          --configuration Release `
+          --runtime win-x64 `
+          --self-contained true `
+          --output ./publish `
+          -p:PublishSingleFile=true `
+          -p:IncludeNativeLibrariesForSelfExtract=true `
+          -p:EnableCompressionInSingleFile=true `
+          -p:DebugType=None `
+          -p:DebugSymbols=false
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ZhihuHub-win-x64-${{ github.sha }}
+        path: ./publish/ZhihuHub.exe
+        retention-days: 30
