@@ -22,7 +22,8 @@ public class SettingsViewModel : ViewModelBase
 
         VerifyAuthCommand = ReactiveCommand.CreateFromTask(VerifyAuthAsync);
 
-        _ = LoadStatusAsync();
+        // 延迟加载，避免构造函数中的线程问题
+        RxApp.MainThreadScheduler.Schedule(() => _ = LoadStatusAsync());
     }
 
     public string AuthStatus

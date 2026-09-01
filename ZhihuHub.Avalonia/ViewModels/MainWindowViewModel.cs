@@ -26,8 +26,8 @@ public class MainWindowViewModel : ViewModelBase
         NavigateToHotCommand = ReactiveCommand.Create(NavigateToHot);
         NavigateToSettingsCommand = ReactiveCommand.Create(NavigateToSettings);
 
-        // 检查认证
-        CheckAuthenticationAsync();
+        // 延迟检查认证，避免构造函数中的线程问题
+        RxApp.MainThreadScheduler.Schedule(() => CheckAuthenticationAsync());
     }
 
     /// <summary>

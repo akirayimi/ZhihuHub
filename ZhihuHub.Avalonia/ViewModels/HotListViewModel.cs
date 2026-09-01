@@ -35,8 +35,8 @@ public class HotListViewModel : ViewModelBase
 
         RefreshCommand = ReactiveCommand.CreateFromTask(LoadHotListAsync);
 
-        // 自动加载
-        _ = LoadHotListAsync();
+        // 延迟加载，避免构造函数中的线程问题
+        RxApp.MainThreadScheduler.Schedule(() => _ = LoadHotListAsync());
     }
 
     public string StatusMessage
