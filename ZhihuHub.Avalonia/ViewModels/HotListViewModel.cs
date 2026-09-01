@@ -36,7 +36,7 @@ public class HotListViewModel : ViewModelBase
         RefreshCommand = ReactiveCommand.CreateFromTask(LoadHotListAsync);
 
         // 延迟加载，避免构造函数中的线程问题
-        Avalonia.Threading.Dispatcher.UIThread.Post(() => _ = LoadHotListAsync());
+        global::Avalonia.Threading.Dispatcher.UIThread.Post(() => _ = LoadHotListAsync());
     }
 
     public string StatusMessage

@@ -23,7 +23,7 @@ public class SettingsViewModel : ViewModelBase
         VerifyAuthCommand = ReactiveCommand.CreateFromTask(VerifyAuthAsync);
 
         // 延迟加载，避免构造函数中的线程问题
-        Avalonia.Threading.Dispatcher.UIThread.Post(() => _ = LoadStatusAsync());
+        global::Avalonia.Threading.Dispatcher.UIThread.Post(() => _ = LoadStatusAsync());
     }
 
     public string AuthStatus

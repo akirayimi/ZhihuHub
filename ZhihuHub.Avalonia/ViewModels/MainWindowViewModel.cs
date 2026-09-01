@@ -27,7 +27,7 @@ public class MainWindowViewModel : ViewModelBase
         NavigateToSettingsCommand = ReactiveCommand.Create(NavigateToSettings);
 
         // 延迟检查认证，避免构造函数中的线程问题
-        Avalonia.Threading.Dispatcher.UIThread.Post(() => CheckAuthenticationAsync());
+        global::Avalonia.Threading.Dispatcher.UIThread.Post(() => CheckAuthenticationAsync());
     }
 
     /// <summary>
