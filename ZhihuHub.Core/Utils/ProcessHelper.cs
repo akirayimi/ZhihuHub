@@ -66,12 +66,14 @@ public static class ProcessHelper
             }
 
             // 等待进程完成，带超时
-            var completed = await process.WaitForExitAsync(
-                TimeSpan.FromSeconds(timeoutSeconds));
-
-            if (!completed)
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutSeconds));
+            try
             {
-                process.Kill(true);
+                await process.WaitForExitAsync(cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                try { process.Kill(true); } catch { }
                 return (false, string.Empty, "Process timeout");
             }
 
@@ -84,23 +86,6 @@ public static class ProcessHelper
         catch (Exception ex)
         {
             return (false, string.Empty, $"Process execution failed: {ex.Message}");
-        }
-    }
-
-    /// <summary>
-    /// 等待进程退出（带超时）
-    /// </summary>
-    private static async Task<bool> WaitForExitAsync(this Process process, TimeSpan timeout)
-    {
-        using var cts = new CancellationTokenSource(timeout);
-        try
-        {
-            await process.WaitForExitAsync(cts.Token);
-            return true;
-        }
-        catch (OperationCanceledException)
-        {
-            return false;
         }
     }
 }
