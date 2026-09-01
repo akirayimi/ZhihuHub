@@ -39,9 +39,20 @@ jobs:
           -p:DebugType=None `
           -p:DebugSymbols=false
 
+        # 检查文件是否生成
+        if (Test-Path ./publish/ZhihuHub.exe) {
+          Write-Host "✅ ZhihuHub.exe generated successfully"
+          Get-Item ./publish/ZhihuHub.exe | Select-Object Name, Length
+        } else {
+          Write-Error "❌ ZhihuHub.exe not found!"
+          Get-ChildItem ./publish -Recurse
+          exit 1
+        }
+
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: ZhihuHub-win-x64-${{ github.sha }}
         path: ./publish/ZhihuHub.exe
         retention-days: 30
+        if-no-files-found: error

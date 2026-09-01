@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <!-- 产物固定为 ZhihuHub.exe，与工作流上传路径和 README 保持一致 -->
+    <AssemblyName>ZhihuHub</AssemblyName>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 
