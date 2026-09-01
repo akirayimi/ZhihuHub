@@ -1,0 +1,92 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 配色：延续知乎蓝主色调 -->
+    <Styles.Resources>
+        <Color x:Key="PrimaryColor">#0084FF</Color>
+        <Color x:Key="PrimaryHoverColor">#3399FF</Color>
+        <Color x:Key="PrimaryPressedColor">#0066CC</Color>
+
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#0084FF" />
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#F5F7FA" />
+        <SolidColorBrush x:Key="CardBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="SidebarBrush" Color="#2C3E50" />
+        <SolidColorBrush x:Key="SidebarHoverBrush" Color="#34495E" />
+        <SolidColorBrush x:Key="SidebarActiveBrush" Color="#3A506B" />
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#2C3E50" />
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#7F8C8D" />
+        <SolidColorBrush x:Key="TextLightBrush" Color="#BDC3C7" />
+        <SolidColorBrush x:Key="BorderBrush" Color="#DCE0E6" />
+    </Styles.Resources>
+
+    <!-- 侧边导航按钮 -->
+    <Style Selector="Button.nav">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource TextLightBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="24,14" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style Selector="Button.nav:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource SidebarHoverBrush}" />
+        <Setter Property="TextElement.Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="Button.nav:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource SidebarActiveBrush}" />
+        <Setter Property="TextElement.Foreground" Value="White" />
+    </Style>
+
+    <!-- 主操作按钮 -->
+    <Style Selector="Button.primary">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="20,10" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHoverColor}" />
+        <Setter Property="TextElement.Foreground" Value="White" />
+    </Style>
+
+    <!-- 卡片 -->
+    <Style Selector="Border.card">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="BoxShadow" Value="0 1 4 0 #14000000" />
+    </Style>
+
+    <!-- 文本层级 -->
+    <Style Selector="TextBlock.h1">
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.h2">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.body">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.secondary">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+    </Style>
+
+</Styles>

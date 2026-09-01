@@ -26,9 +26,9 @@ jobs:
     - name: Build solution
       run: dotnet build --configuration Release --no-restore
 
-    - name: Publish self-contained executable
+    - name: Publish Avalonia self-contained executable
       run: |
-        dotnet publish ZhihuHub.UI/ZhihuHub.UI.csproj `
+        dotnet publish ZhihuHub.Avalonia/ZhihuHub.Avalonia.csproj `
           --configuration Release `
           --runtime win-x64 `
           --self-contained true `
@@ -41,7 +41,7 @@ jobs:
 
         # 检查文件是否生成
         if (Test-Path ./publish/ZhihuHub.exe) {
-          Write-Host "✅ ZhihuHub.exe generated successfully"
+          Write-Host "✅ ZhihuHub.exe (Avalonia) generated successfully"
           Get-Item ./publish/ZhihuHub.exe | Select-Object Name, Length
         } else {
           Write-Error "❌ ZhihuHub.exe not found!"
@@ -49,10 +49,10 @@ jobs:
           exit 1
         }
 
-    - name: Upload build artifact
+    - name: Upload Avalonia build artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ZhihuHub-win-x64-${{ github.sha }}
+        name: ZhihuHub-Avalonia-win-x64-${{ github.sha }}
         path: ./publish/ZhihuHub.exe
         retention-days: 30
         if-no-files-found: error

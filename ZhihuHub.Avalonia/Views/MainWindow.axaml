@@ -1,0 +1,99 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ZhihuHub.Avalonia.ViewModels"
+        xmlns:views="using:ZhihuHub.Avalonia.Views"
+        x:Class="ZhihuHub.Avalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/icon.ico"
+        Title="ZhihuHub Desktop"
+        Width="1200" Height="800"
+        MinWidth="1000" MinHeight="600">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*,Auto">
+        <!-- 主内容区 -->
+        <Grid Grid.Row="0" ColumnDefinitions="200,*">
+            <!-- 侧边导航栏 -->
+            <Border Grid.Column="0" Background="#2C3E50" Padding="0">
+                <StackPanel Spacing="4" Margin="0,20,0,0">
+                    <!-- 首页 -->
+                    <Button Content="🏠 首页"
+                            Command="{Binding NavigateToHomeCommand}"
+                            Classes="nav-button" />
+
+                    <!-- 搜索 -->
+                    <Button Content="🔍 搜索"
+                            Command="{Binding NavigateToSearchCommand}"
+                            Classes="nav-button" />
+
+                    <!-- 热榜 -->
+                    <Button Content="🔥 热榜"
+                            Command="{Binding NavigateToHotCommand}"
+                            Classes="nav-button" />
+
+                    <!-- 设置 -->
+                    <Button Content="⚙️ 设置"
+                            Command="{Binding NavigateToSettingsCommand}"
+                            Classes="nav-button" />
+                </StackPanel>
+            </Border>
+
+            <!-- 内容区 -->
+            <Border Grid.Column="1" Background="#F5F7FA" Padding="20">
+                <ContentControl Content="{Binding CurrentView}">
+                    <ContentControl.DataTemplates>
+                        <DataTemplate DataType="vm:HomeViewModel">
+                            <views:HomeView />
+                        </DataTemplate>
+                        <DataTemplate DataType="vm:SearchViewModel">
+                            <views:SearchView />
+                        </DataTemplate>
+                        <DataTemplate DataType="vm:HotListViewModel">
+                            <views:HotListView />
+                        </DataTemplate>
+                        <DataTemplate DataType="vm:SettingsViewModel">
+                            <views:SettingsView />
+                        </DataTemplate>
+                    </ContentControl.DataTemplates>
+                </ContentControl>
+            </Border>
+        </Grid>
+
+        <!-- 状态栏 -->
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#DCE0E6"
+                BorderThickness="0,1,0,0"
+                Padding="20,10">
+            <TextBlock Text="{Binding StatusText}"
+                       FontSize="12"
+                       Foreground="#7F8C8D" />
+        </Border>
+    </Grid>
+
+    <!-- 样式 -->
+    <Window.Styles>
+        <Style Selector="Button.nav-button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#BDC3C7" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="24,16" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Button.nav-button:pointerover">
+            <Setter Property="Background" Value="#34495E" />
+        </Style>
+
+        <Style Selector="Button.nav-button:pressed">
+            <Setter Property="Background" Value="#3A506B" />
+        </Style>
+    </Window.Styles>
+
+</Window>

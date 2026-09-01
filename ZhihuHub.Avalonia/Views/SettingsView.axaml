@@ -1,0 +1,108 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ZhihuHub.Avalonia.ViewModels"
+             x:Class="ZhihuHub.Avalonia.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+
+    <ScrollViewer>
+        <StackPanel Spacing="30" Margin="20">
+            <!-- 标题 -->
+            <TextBlock Text="设置"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#2C3E50" />
+
+            <!-- 认证状态 -->
+            <Border Background="White"
+                    CornerRadius="8"
+                    Padding="25"
+                    BoxShadow="0 2 8 0 #10000000">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="认证状态"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#2C3E50" />
+
+                    <TextBlock Text="{Binding AuthStatus}"
+                               FontSize="14"
+                               Foreground="#7F8C8D" />
+
+                    <Button Content="验证认证"
+                            Command="{Binding VerifyAuthCommand}"
+                            IsEnabled="{Binding !IsBusy}"
+                            Background="#0084FF"
+                            Foreground="White"
+                            Padding="16,8"
+                            CornerRadius="4"
+                            HorizontalAlignment="Left"
+                            Cursor="Hand" />
+                </StackPanel>
+            </Border>
+
+            <!-- CLI 配置 -->
+            <Border Background="White"
+                    CornerRadius="8"
+                    Padding="25"
+                    BoxShadow="0 2 8 0 #10000000">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="CLI 配置"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#2C3E50" />
+
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="CLI 路径:"
+                                   FontSize="14"
+                                   Foreground="#2C3E50"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,15,0" />
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Text="{Binding CliPath}"
+                                 IsReadOnly="True"
+                                 Background="#F5F7FA"
+                                 FontSize="12" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="CLI 版本:"
+                                   FontSize="14"
+                                   Foreground="#2C3E50"
+                                   VerticalAlignment="Center"
+                                   Margin="0,10,15,0" />
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="{Binding CliVersion}"
+                                   FontSize="14"
+                                   Foreground="#7F8C8D"
+                                   VerticalAlignment="Center"
+                                   Margin="0,10,0,0" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- 关于 -->
+            <Border Background="White"
+                    CornerRadius="8"
+                    Padding="25"
+                    BoxShadow="0 2 8 0 #10000000">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="关于"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#2C3E50" />
+
+                    <TextBlock FontSize="13" Foreground="#7F8C8D" TextWrapping="Wrap">
+                        <Run Text="{Binding VersionInfo}" />
+                        <LineBreak />
+                        <Run Text="知乎开放平台 CLI 图形界面客户端" />
+                        <LineBreak />
+                        <LineBreak />
+                        <Run Text="基于 Avalonia UI 构建" />
+                        <LineBreak />
+                        <Run Text="Copyright © 2026" />
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>
