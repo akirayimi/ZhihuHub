@@ -4,7 +4,6 @@
         xmlns:views="using:ZhihuHub.Avalonia.Views"
         x:Class="ZhihuHub.Avalonia.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/icon.ico"
         Title="ZhihuHub Desktop"
         Width="1200" Height="800"
         MinWidth="1000" MinHeight="600">
