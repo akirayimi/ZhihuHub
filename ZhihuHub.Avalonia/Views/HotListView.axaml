@@ -52,17 +52,20 @@
                                 Cursor="Hand">
                             <Grid ColumnDefinitions="Auto,*">
                                 <!-- 排名 -->
-                                <TextBlock Grid.Column="0"
-                                           FontSize="24"
-                                           FontWeight="Bold"
-                                           VerticalAlignment="Center"
-                                           Margin="0,0,20,0"
-                                           Width="40"
-                                           HorizontalAlignment="Center">
-                                    <TextBlock.Foreground>
-                                        <SolidColorBrush Color="#FF5733" />
-                                    </TextBlock.Foreground>
-                                </TextBlock>
+                                <Border Grid.Column="0"
+                                        Width="50"
+                                        Height="50"
+                                        CornerRadius="25"
+                                        Background="#FFF5F5"
+                                        Margin="0,0,20,0"
+                                        VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Rank}"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Foreground="#FF5733"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                </Border>
 
                                 <!-- 内容 -->
                                 <StackPanel Grid.Column="1" Spacing="8">
@@ -80,8 +83,7 @@
                                                Foreground="#7F8C8D"
                                                TextWrapping="Wrap"
                                                MaxLines="1"
-                                               TextTrimming="CharacterEllipsis"
-                                               IsVisible="{Binding Summary, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                               TextTrimming="CharacterEllipsis" />
                                 </StackPanel>
                             </Grid>
                         </Border>

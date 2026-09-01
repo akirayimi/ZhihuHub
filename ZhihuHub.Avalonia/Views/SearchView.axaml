@@ -68,8 +68,7 @@
 
                                 <!-- 作者 -->
                                 <TextBlock FontSize="12"
-                                           Foreground="#7F8C8D"
-                                           IsVisible="{Binding AuthorName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                           Foreground="#7F8C8D">
                                     <Run Text="👤" />
                                     <Run Text="{Binding AuthorName}" />
                                 </TextBlock>
@@ -80,8 +79,7 @@
                                            Foreground="#2C3E50"
                                            TextWrapping="Wrap"
                                            MaxLines="2"
-                                           TextTrimming="CharacterEllipsis"
-                                           IsVisible="{Binding ContentText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                           TextTrimming="CharacterEllipsis" />
                             </StackPanel>
                         </Border>
                     </DataTemplate>

@@ -22,22 +22,22 @@
                     <!-- 首页 -->
                     <Button Content="🏠 首页"
                             Command="{Binding NavigateToHomeCommand}"
-                            Classes="nav-button" />
+                            Classes="nav" />
 
                     <!-- 搜索 -->
                     <Button Content="🔍 搜索"
                             Command="{Binding NavigateToSearchCommand}"
-                            Classes="nav-button" />
+                            Classes="nav" />
 
                     <!-- 热榜 -->
                     <Button Content="🔥 热榜"
                             Command="{Binding NavigateToHotCommand}"
-                            Classes="nav-button" />
+                            Classes="nav" />
 
                     <!-- 设置 -->
                     <Button Content="⚙️ 设置"
                             Command="{Binding NavigateToSettingsCommand}"
-                            Classes="nav-button" />
+                            Classes="nav" />
                 </StackPanel>
             </Border>
 
@@ -73,27 +73,5 @@
                        Foreground="#7F8C8D" />
         </Border>
     </Grid>
-
-    <!-- 样式 -->
-    <Window.Styles>
-        <Style Selector="Button.nav-button">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="#BDC3C7" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Padding" Value="24,16" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Cursor" Value="Hand" />
-        </Style>
-
-        <Style Selector="Button.nav-button:pointerover">
-            <Setter Property="Background" Value="#34495E" />
-        </Style>
-
-        <Style Selector="Button.nav-button:pressed">
-            <Setter Property="Background" Value="#3A506B" />
-        </Style>
-    </Window.Styles>
 
 </Window>

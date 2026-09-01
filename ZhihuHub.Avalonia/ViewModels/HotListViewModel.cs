@@ -8,6 +8,17 @@ using ZhihuHub.Core.Services;
 namespace ZhihuHub.Avalonia.ViewModels;
 
 /// <summary>
+/// 热榜项 ViewModel（包含排名）
+/// </summary>
+public class HotItemViewModel
+{
+    public int Rank { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
+    public string Summary { get; set; } = string.Empty;
+}
+
+/// <summary>
 /// 热榜 ViewModel
 /// </summary>
 public class HotListViewModel : ViewModelBase
@@ -20,7 +31,7 @@ public class HotListViewModel : ViewModelBase
     public HotListViewModel(IZhihuCliService cliService)
     {
         _cliService = cliService;
-        HotItems = new ObservableCollection<HotItem>();
+        HotItems = new ObservableCollection<HotItemViewModel>();
 
         RefreshCommand = ReactiveCommand.CreateFromTask(LoadHotListAsync);
 
@@ -46,7 +57,7 @@ public class HotListViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _lastUpdateTime, value);
     }
 
-    public ObservableCollection<HotItem> HotItems { get; }
+    public ObservableCollection<HotItemViewModel> HotItems { get; }
 
     public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
 
@@ -62,9 +73,16 @@ public class HotListViewModel : ViewModelBase
 
             if (result?.Code == 0 && result.Data?.Items != null)
             {
+                int rank = 1;
                 foreach (var item in result.Data.Items)
                 {
-                    HotItems.Add(item);
+                    HotItems.Add(new HotItemViewModel
+                    {
+                        Rank = rank++,
+                        Title = item.Title,
+                        Url = item.Url,
+                        Summary = item.Summary
+                    });
                 }
 
                 StatusMessage = $"共 {result.Data.Total} 条热榜";
